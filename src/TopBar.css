@@ -1,11 +1,19 @@
 
 .topBar {
+    
     display: flex;
+    position: relative;
     background: var(--bg-translucent);
     border-bottom: var(--accent) solid 1px;
-    width: 100%;
+    width: 100vw;
     height: 50px;
     align-items: center;
     justify-content: center;
     vertical-align: center;
+
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    box-sizing: border-box;
 }

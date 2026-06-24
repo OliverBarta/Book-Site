@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500&display=swap');
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -8,12 +10,13 @@
   --accent: #aa3bff;
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
+  --anti: #e3bfff;
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --heading: 'Cinzel', serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -35,13 +38,14 @@
   :root:not(.light-theme) {
     --text: #9ca3af;
     --text-h: #f3f4f6;
-    --bg: #16171d;
+    --bg: #000000;
     --bg-translucent: rgba(22,23,29, 0.9);
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #c084fc;
     --accent-bg: rgba(192, 132, 252, 0.15);
     --accent-border: rgba(192, 132, 252, 0.5);
+    --anti: #ddbbff;
     --social-bg: rgba(47, 48, 58, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
@@ -112,10 +116,13 @@ h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
+  text-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  transition: text-shadow 1s ease;
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
   }
+  
 }
 h2 {
   font-size: 24px;
@@ -127,10 +134,38 @@ h2 {
   }
 }
 p {
+  text-align: left;
+  color: var(--text-h);
+  padding: 0px 20px;
   margin: 0;
 }
 
+h1:hover {
+  text-shadow: 0px 0px 12px var(--accent);
+}
+
+p:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
 .title {
+  all: unset;
+  cursor: pointer;
   color: var(--text-h);
   font-size: 32px;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  padding: 5px 10px;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 15px;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  transition: box-shadow 1s ease;
+}
+
+button:hover {
+  box-shadow: 0px 0px 12px 0px var(--accent);
 }

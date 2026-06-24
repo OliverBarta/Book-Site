@@ -1,5 +1,6 @@
 
 import './TopBar.css'
+import { Link } from 'react-router-dom';
 
 
 function TopBar() {
@@ -7,7 +8,7 @@ function TopBar() {
     return (
         <>
             <div className='topBar'>
-                <div className='title'>Book Site</div>
+                <Link to="/" className='title'>Book Site</Link>
             </div>
         </>
     )
