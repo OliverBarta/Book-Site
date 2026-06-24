@@ -19,6 +19,7 @@
   --heading: 'Cinzel', serif;
   --mono: ui-monospace, Consolas, monospace;
 
+  --p-font: 15px;
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
@@ -134,6 +135,7 @@ h2 {
   }
 }
 p {
+  font-size: var(--p-font);
   text-align: left;
   color: var(--text-h);
   padding: 0px 20px;
