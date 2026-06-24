@@ -26,3 +26,4 @@ dist-ssr
 scraper/
 .env
 **/.env
+.vercel
