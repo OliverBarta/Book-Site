@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import ChapterSelector from './ChapterSelector';
 import './ChapterView.css';
 
 function ChapterView({ title, bookId, chapterNum}) {
@@ -10,6 +11,8 @@ function ChapterView({ title, bookId, chapterNum}) {
     const [totalChapters, setTotalChapters] = useState(0);
     const [chapter, setChapter] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const [chapterSelector, setChapterSelector] = useState(false);
 
     useEffect(() => {
         async function getChapter() {
@@ -59,49 +62,73 @@ function ChapterView({ title, bookId, chapterNum}) {
 
     return (
         <div>
-            <div>
-                <div className='chapterSelectRow'>
-                    <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter-1}`)}
+            <div className='chapterSelectRow'>
+                {currentChapter != 1 &&
+                <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter-1}`)}
+                    style={{marginRight:"auto"}}
+                    className='nextChapter'
+                    >{"<"}</button>
+                }
+                {currentChapter == 1 &&
+                    <div
                         style={{marginRight:"auto"}}
-                        className='nextChapter'
-                        >{"<"}</button>
-                    <h3>{chapter.title}</h3>
-                    {!lastChapter &&
-                        <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter+1}`)}
-                            style={{marginLeft:"auto"}}
-                            className='nextChapter'
-                            >{">"}</button>
-                    }
-                    {lastChapter &&
-                        <div
-                            style={{marginLeft:"auto"}}
-                            className='noNextChapter'
-                            >{">"}</div>
-                    }
-                </div>
-                {chapter.content.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                ))}
-                <div className='chapterSelectRow'>
-                    <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter-1}`)}
-                        style={{marginRight:"auto"}}
-                        className='nextChapter'
-                        >{"<"}</button>
-                    <h3>{chapter.title}</h3>
-                    {!lastChapter &&
-                        <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter+1}`)}
-                            style={{marginLeft:"auto"}}
-                            className='nextChapter'
-                            >{">"}</button>
-                    }
-                    {lastChapter &&
-                        <div
-                            style={{marginLeft:"auto"}}
-                            className='noNextChapter'
-                            >{">"}</div>
-                    }
-                </div>
+                        className='noNextChapter'
+                        >{"<"}</div>
+                }
+                <div style={{ position: "relative" }}>
+                    <button onClick={() => setChapterSelector(prev => !prev)}
+                        style={{padding:"0px 50px", border:"none"}}
+                        ><h3>{chapter.title}</h3></button>
 
+                    {chapterSelector &&
+                        <ChapterSelector
+                            currentChapter={currentChapter}
+                            totalChapters={totalChapters}
+                            title={title}
+                            bookId={bookId}
+                            setChapterSelector={setChapterSelector}
+                        />
+                    }
+                </div>
+                
+                {!lastChapter &&
+                    <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter+1}`)}
+                        style={{marginLeft:"auto"}}
+                        className='nextChapter'
+                        >{">"}</button>
+                }
+                {lastChapter &&
+                    <div
+                        style={{marginLeft:"auto"}}
+                        className='noNextChapter'
+                        >{">"}</div>
+                }
+            </div>
+            {chapter.content.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+            ))}
+            <div className='chapterSelectRow'>
+                <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter-1}`)}
+                    style={{marginRight:"auto"}}
+                    className='nextChapter'
+                    >{"<"}</button>
+                
+                <button onClick={() => setChapterSelector(true)}
+                    style={{padding:"0px 50px", border:"none"}}
+                    ><h3>{chapter.title}</h3></button>
+                
+                {!lastChapter &&
+                    <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter+1}`)}
+                        style={{marginLeft:"auto"}}
+                        className='nextChapter'
+                        >{">"}</button>
+                }
+                {lastChapter &&
+                    <div
+                        style={{marginLeft:"auto"}}
+                        className='noNextChapter'
+                        >{">"}</div>
+                }
             </div>
 
         </div>
