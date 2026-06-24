@@ -1,0 +1,69 @@
+.fontMenuContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.fontMenuTrigger {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.fontDropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 100;
+
+    width: 220px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+
+    padding: 14px 16px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fontDropdownLabel {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-align: left;
+}
+
+.fontSliderRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fontSliderIcon {
+    color: var(--text);
+    font-family: var(--sans);
+    flex-shrink: 0;
+}
+
+.fontSliderIcon.small {
+    font-size: 12px;
+}
+
+.fontSliderIcon.large {
+    font-size: 20px;
+}
+
+.fontSlider {
+    flex: 1;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.fontSizeValue {
+    font-size: 12px;
+    color: var(--text);
+    text-align: right;
+}

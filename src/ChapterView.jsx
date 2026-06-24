@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from './supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import ChapterSelector from './ChapterSelector';
+import FontSizeMenu from './FontSizeMenu';
 import './ChapterView.css';
 
 function ChapterView({ title, bookId, chapterNum}) {
@@ -62,6 +63,9 @@ function ChapterView({ title, bookId, chapterNum}) {
 
     return (
         <div>
+            <div className='fontMenuRow' style={{ display: 'flex', justifyContent: 'flex-end', paddingRight:"15px" }}>
+                <FontSizeMenu />
+            </div>
             <div className='chapterSelectRow'>
                 {currentChapter != 1 &&
                 <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter-1}`)}

@@ -3,7 +3,7 @@
     
     display: flex;
     position: relative;
-    background: var(--bg-translucent);
+    background: var(--accent-bg);
     border-bottom: var(--accent) solid 1px;
     width: 100vw;
     height: 50px;
