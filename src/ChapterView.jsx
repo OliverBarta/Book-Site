@@ -57,6 +57,10 @@ function ChapterView({ title, bookId, chapterNum}) {
 
     const currentChapter = Number(chapterNum);
 
+    if (bookId && currentChapter) {
+        localStorage.setItem(`book_${bookId}_last_chapter`, currentChapter);
+    }
+
     const lastChapter = currentChapter >= totalChapters;
 
 

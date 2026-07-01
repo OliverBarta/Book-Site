@@ -7,6 +7,10 @@
     font-family: var(--sans);
     font-weight: 500;
     font-size: 14px;
+
+    height: 40px;
+    width: 40px;
+
 }
 
 .fontDropdown {

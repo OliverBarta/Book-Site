@@ -4,8 +4,9 @@ import { useState } from 'react'
 
 import TopBar from './TopBar.jsx'
 import './App.css'
-import Home from './home.jsx';
+import BookLanding from './BookLanding.jsx';
 import ReadingPage from './ReadingPage.jsx';
+import BookSelection from './BookSelection.jsx';
 
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
     <TopBar/>
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<BookSelection/>} />
+          <Route path="/Landing/:title/:bookId" element={<BookLanding />} />
           <Route path="/book/:title/:bookId/chapter/:chapterNum" element={<ReadingPage />} />
         </Routes>
       </main>

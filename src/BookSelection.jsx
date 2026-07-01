@@ -43,7 +43,7 @@ function BookSelection() {
                 <div className='formattingDiv'>
                     <button
                         key={book.id}
-                        onClick={() => navigate(`/book/${book.title}/${book.id}/chapter/1`)}
+                        onClick={() => navigate(`/Landing/${book.title}/${book.id}`)}
                         className='bookSquare'>
                         <img src={book.cover_image_url} alt={book.id}></img>
                         <div className='bookName'>{book.title}</div>

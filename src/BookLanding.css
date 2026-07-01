@@ -1,0 +1,44 @@
+.bookInfoRow {
+    display: flex;
+    flex-direction: row;
+    padding-left: 15px;
+
+}
+
+.bookImageSquare {
+    border-radius: 15px;
+    align-self: center;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+@media (max-width: 450px) {
+    .bookImageSquare {
+        height: 150px;
+        width: 150px;
+    }
+}
+
+.buttonRow {
+    display: flex;
+    margin-top: 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.readFrom {
+    padding: 10px 15px;
+}
+
+@media (max-width: 600px) {
+    .buttonRow {
+        flex-direction: column;
+    }
+    .readFrom {
+        width: calc(100% - 65px);
+    }
+
+}
