@@ -14,6 +14,7 @@ function BookLanding() {
     const [description, setDescription] = useState("");
     const [imgAddress, setImgAddress] = useState("");
     const [continueChapter, setContinueChapter] = useState(1);
+    const [chapterInput, setChapterInput] = useState(1);
     
 
     const { title, bookId } = useParams();
@@ -42,8 +43,10 @@ function BookLanding() {
 
             if (savedChapter) {
                 setContinueChapter(parseInt(savedChapter, 10));
+                setChapterInput(parseInt(savedChapter, 10));
             } else {
                 setContinueChapter(1);
+                
             }
 
             setLoading(false);
@@ -53,6 +56,13 @@ function BookLanding() {
         getBookDetails();
 
     }, [bookId]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (chapterInput) {
+            navigate(`/book/${title}/${bookId}/chapter/${chapterInput}`);
+        }
+    };
 
     if (loading) return <h3>Loading book details...</h3>;
 
@@ -64,6 +74,13 @@ function BookLanding() {
                 <p>{description}</p>
             </div>
             <div className='buttonRow'>
+                <form onSubmit={handleSubmit} className='inputChapterBox'>
+                    <input type="text" placeholder="Enter chapter" autoComplete="off" className='inputChapter'
+                        onChange={(e) => setChapterInput(e.target.value)}
+                    ></input>
+                    <button className='buttonSearch'>Go</button>
+                </form>
+                
                 <button className='readFrom'
                     onClick={() => navigate(`/book/${title}/${bookId}/chapter/1`)}
                 >Read from chapter: 1</button>

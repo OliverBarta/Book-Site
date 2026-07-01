@@ -22,23 +22,52 @@
 
 .buttonRow {
     display: flex;
-    margin-top: 15px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 15px;
+    margin: 0px 15px;
+    margin-top: 15px;
 }
 
 .readFrom {
     padding: 10px 15px;
 }
 
-@media (max-width: 600px) {
+.inputChapter {
+    padding: 10px 10px;
+    width: 110px;
+}
+
+.inputChapterBox {
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin: 0;
+}
+
+.buttonSearch {
+    padding: 10px;
+}
+
+@media (max-width: 950px) {
     .buttonRow {
         flex-direction: column;
     }
     .readFrom {
-        width: calc(100% - 65px);
+        width: calc(100vw - 60px);
     }
 
+    .inputChapter {
+        width: calc(100vw - 110px);
+    }
+
+}
+
+@media (max-width: 650px) {
+    .bookInfoRow {
+        flex-direction: column;
+        padding-left: 0px;
+    }
 }
