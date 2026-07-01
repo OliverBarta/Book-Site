@@ -66,7 +66,7 @@ function BookLanding() {
             <div className='buttonRow'>
                 <button className='readFrom'
                     onClick={() => navigate(`/book/${title}/${bookId}/chapter/1`)}
-                >Read from chapter 1</button>
+                >Read from chapter: 1</button>
                 {continueChapter !== 1 &&
                     <button className='readFrom'
                         onClick={() => navigate(`/book/${title}/${bookId}/chapter/${continueChapter}`)}
@@ -74,7 +74,7 @@ function BookLanding() {
                 }
                 <button className='readFrom'
                     onClick={() => navigate(`/book/${title}/${bookId}/chapter/${totalChapters}`)}
-                >Read from chapter {totalChapters}</button>
+                >Read from chapter: {totalChapters}</button>
             </div>
             
 
