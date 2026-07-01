@@ -170,12 +170,13 @@ p:not(:last-of-type) {
 button {
   all: unset;
   cursor: pointer;
-  padding: 5px 10px;
+
   background: var(--bg);
   border: 1px solid var(--accent);
   border-radius: 15px;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   transition: box-shadow 1s ease;
+
 }
 
 button:hover {

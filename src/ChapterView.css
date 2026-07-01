@@ -1,6 +1,6 @@
 
 .chapterSelectRow {
-    margin: 15px 0px;
+    margin: 15px 15px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -8,19 +8,40 @@
 }
 
 .nextChapter {
-    margin: 0px 15px;
-    min-width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+
+    line-height: 0;
+    padding-bottom: 4px;
+
+    height: 36px;
+    min-width: 40px;
 }
 
 .noNextChapter {
-    all: unset;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 10px;
     background: var(--accent-bg);
     border: 1px solid var(--anti);
     border-radius: 15px;
-    margin: 0px 15px;
-    min-width: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    
+    line-height: 0;
+    padding-bottom: 4px;
+
+    height: 36px;
+    min-width: 40px;
+
+}
+
+.chapterTitle {
+    padding: 0;
+    border: none;
+
+    padding: 0px 12px;
+
 }

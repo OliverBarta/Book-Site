@@ -81,7 +81,7 @@ function ChapterView({ title, bookId, chapterNum}) {
                 }
                 <div style={{ position: "relative" }}>
                     <button onClick={() => setChapterSelector(prev => !prev)}
-                        style={{padding:"0px 50px", border:"none"}}
+                        className='chapterTitle'
                         ><h3>{chapter.title}</h3></button>
 
                     {chapterSelector &&
@@ -100,6 +100,7 @@ function ChapterView({ title, bookId, chapterNum}) {
                         style={{marginLeft:"auto"}}
                         className='nextChapter'
                         >{">"}</button>
+                    
                 }
                 {lastChapter &&
                     <div
@@ -118,7 +119,7 @@ function ChapterView({ title, bookId, chapterNum}) {
                     >{"<"}</button>
                 
                 <button onClick={() => setChapterSelector(true)}
-                    style={{padding:"0px 50px", border:"none"}}
+                    className='chapterTitle'
                     ><h3>{chapter.title}</h3></button>
                 
                 {!lastChapter &&
