@@ -16,7 +16,6 @@ function BookLanding() {
     const [continueChapter, setContinueChapter] = useState(1);
     const [chapterInput, setChapterInput] = useState("");
     
-
     const { title, bookId } = useParams();
 
     // this variable and the following useEffect are used to prevent the input box from transitioning when the window is resized, which can cause a jarring effect
@@ -114,8 +113,6 @@ function BookLanding() {
                     onClick={() => navigate(`/book/${title}/${bookId}/chapter/${totalChapters}`)}
                 >Read from chapter: {totalChapters}</button>
             </div>
-            
-
         </>
     )
 }
