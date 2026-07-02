@@ -3,6 +3,7 @@ import './TopBar.css'
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from './hooks/useTheme';
+import { useFavouriteSection } from './hooks/useFavouriteSection.jsx';
 
 
 function TopBar() {
@@ -11,6 +12,8 @@ function TopBar() {
     const settingsRef = useRef(null);
     const buttonRef = useRef(null);
     const { theme, toggleTheme } = useTheme();
+
+    const { favouriteSection, setFavouriteSection } = useFavouriteSection();
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -33,6 +36,20 @@ function TopBar() {
         };
     }, [settingsOpen]);
 
+    useEffect(() => {
+        const stored = localStorage.getItem('favouriteSection');
+
+        if (stored !== null) {
+            setFavouriteSection(stored === 'true');
+        } else {
+            localStorage.setItem('favouriteSection', true);
+        }
+        
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('favouriteSection', favouriteSection);
+    }, [favouriteSection]);
 
     return (
         <>
@@ -62,7 +79,7 @@ function TopBar() {
             {settingsOpen && (
                 <div className='settingsMenu' ref={settingsRef}>
                     <div className='sliderRow'>
-                        <span className='DropdownLabel'>Dark mode toggle:</span>
+                        <span className='DropdownLabel'>Dark mode:</span>
                         <button
                             className={`themeSwitch ${theme === 'dark' ? 'active' : ''}`}
                             role="switch"
@@ -73,10 +90,21 @@ function TopBar() {
                             <span className='themeSwitchThumb' />
                         </button>
                     </div>
+                    <div className='sliderRow'>
+                        <span className='DropdownLabel'>Favourite section:</span>
+                        <button
+                            className={`themeSwitch ${favouriteSection ? 'active' : ''}`}
+                            role="switch"
+                            aria-checked={favouriteSection}
+                            aria-label="Toggle favourite row"
+                            onClick={() => setFavouriteSection(!favouriteSection)}
+                        >
+                            <span className='themeSwitchThumb' />
+                        </button>
+                    </div>
                     
                 </div>
             )}
-            
         </>
     )
 }

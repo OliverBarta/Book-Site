@@ -1,3 +1,5 @@
+// the code for the theme override toggle in the settings menu
+
 import { useState, useEffect, useCallback } from 'react';
 
 function getEffectiveTheme() {

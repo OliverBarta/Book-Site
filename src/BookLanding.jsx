@@ -89,7 +89,7 @@ function BookLanding() {
             <h1>{title}</h1>
             <div className='bookInfoRow'>
                 <img className='bookImageSquare' src={imgAddress} alt={bookId}></img>
-                <p>{description}</p>
+                <span className='descriptionSpan'>{description}</span>
             </div>
             <div className='buttonRow'>
                 <form onSubmit={handleSubmit} className={`inputChapterBox${chapterInput ? ' active' : ''}`}>

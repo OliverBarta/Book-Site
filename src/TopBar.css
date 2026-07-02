@@ -80,7 +80,8 @@
     border: 1px solid var(--accent-border);
     position: relative;
     flex-shrink: 0;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease,
+    box-shadow 1s ease;
 }
 
 .themeSwitch.active {

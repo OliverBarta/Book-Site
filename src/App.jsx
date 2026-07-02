@@ -7,13 +7,15 @@ import './App.css'
 import BookLanding from './BookLanding.jsx';
 import ReadingPage from './ReadingPage.jsx';
 import BookSelection from './BookSelection.jsx';
-
+import { FavouriteSectionProvider } from './hooks/useFavouriteSection.jsx';
 
 function App() {
 
   return (
     
     <Router>
+    <FavouriteSectionProvider>
+
     <TopBar/>
       <main>
         <Routes>
@@ -22,6 +24,7 @@ function App() {
           <Route path="/book/:title/:bookId/chapter/:chapterNum" element={<ReadingPage />} />
         </Routes>
       </main>
+    </FavouriteSectionProvider>
     </Router>
   )
 }
