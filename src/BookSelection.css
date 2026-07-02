@@ -56,3 +56,10 @@
 .bookName {
     padding-top: 10px;
 }
+
+.bookSearch {
+    margin-top: 15px;
+    padding: 10px 10px;
+    width: calc(100% - 70px);
+    max-width: 500px;
+}

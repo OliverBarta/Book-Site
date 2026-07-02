@@ -12,6 +12,7 @@ const dbPromise = openDB('chapter-store', 1, {
     },
 });
 
+// how many chapters ahead to save
 const PREFETCH_AHEAD = 100;
 
 function cacheKey(bookId, chapterNumber) {
