@@ -6,8 +6,19 @@ import FontSizeMenu from './FontSizeMenu';
 import './ChapterView.css';
 import { openDB } from 'idb';
 
-const dbPromise = openDB('chapter-store', 1, {
-    upgrade(db) {
+// const dbPromise = openDB('chapter-store', 1, {
+//     upgrade(db) {
+//         db.createObjectStore('chapters', { keyPath: 'id' });
+//     },
+// });
+
+const dbPromise = openDB('chapter-store', 2, {
+    upgrade(db, oldVersion) {
+        if (oldVersion < 2) {
+            if (db.objectStoreNames.contains('chapters')) {
+                db.deleteObjectStore('chapters');
+            }
+        }
         db.createObjectStore('chapters', { keyPath: 'id' });
     },
 });
