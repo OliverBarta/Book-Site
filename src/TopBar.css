@@ -1,6 +1,5 @@
 
 .topBar {
-    
     display: flex;
     position: relative;
     background: var(--accent-bg);
@@ -16,4 +15,90 @@
     margin-left: -50vw;
     margin-right: -50vw;
     box-sizing: border-box;
+}
+
+.title {
+    all: unset;
+    cursor: pointer;
+    color: var(--text-h);
+    font-size: 32px;
+    position: absolute;
+}
+
+.settingsButton {
+    all: unset;
+    cursor: pointer;
+    position: absolute;
+    border-radius: 30px;
+    right: 15px;
+    top: 12px;
+
+    transition: filter 1s ease;
+}
+
+.settingsButton:hover {
+    box-shadow: none;
+    filter: drop-shadow(0px 0px 8px var(--accent));
+}
+
+.settingsMenu {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    z-index: 100;
+
+    text-align: left;
+    width: 220px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+
+    padding: 14px 16px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+
+.sliderRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.themeSwitch {
+    all: unset;
+    cursor: pointer;
+    width: 40px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--border);
+    border: 1px solid var(--accent-border);
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.themeSwitch.active {
+    background: var(--accent);
+}
+
+.themeSwitchThumb {
+    position: absolute;
+    top: 2.5px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+}
+
+.themeSwitch.active .themeSwitchThumb {
+    transform: translateX(18px);
 }

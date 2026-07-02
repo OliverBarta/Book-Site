@@ -33,7 +33,7 @@
     gap: 10px;
 }
 
-.fontDropdownLabel {
+.DropdownLabel {
     font-size: 13px;
     font-weight: 500;
     color: var(--text);

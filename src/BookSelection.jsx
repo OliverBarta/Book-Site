@@ -14,6 +14,7 @@ function BookSelection() {
 
     const navigate = useNavigate();
 
+    // runs only once on initial load
     useEffect(() => {
         async function getBooks() {
             setLoading(true);
@@ -30,13 +31,13 @@ function BookSelection() {
             }
 
             setLoading(false);
-            
         }
 
         getBooks();
 
     }, []);
 
+    // runs every time searchTerm changes
     useEffect(() => {
         setBooks(allBooks.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase())));
     }, [searchTerm]);

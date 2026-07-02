@@ -64,7 +64,7 @@ function FontSizeMenu() {
 
             {open &&
                 <div className='fontDropdown'>
-                    <span className='fontDropdownLabel'>Text size</span>
+                    <span className='DropdownLabel'>Text size</span>
                     <div className='fontSliderRow'>
                         <span className='fontSliderIcon small'>A</span>
                         <input type='range' min={MIN_SIZE} max={MAX_SIZE} step={1}
@@ -73,7 +73,7 @@ function FontSizeMenu() {
                     </div>
                     <span className='fontSizeValue'>{fontSize}px</span>
 
-                    <span className='fontDropdownLabel'>Line spacing</span>
+                    <span className='DropdownLabel'>Line spacing</span>
                     <div className='fontSliderRow'>
                         <span className='fontSliderIcon small'>☰</span>
                         <input type='range' min={MIN_LINE_HEIGHT} max={MAX_LINE_HEIGHT} step={0.1}
