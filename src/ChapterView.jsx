@@ -184,14 +184,21 @@ function ChapterView({ title, bookId, chapterNum }) {
                 <p key={index}>{paragraph}</p>
             ))}
             <div className='chapterSelectRow'>
-                <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter - 1}`)}
-                    style={{ marginRight: "auto" }}
-                    className='nextChapter'
-                >{"<"}</button>
-
-                <button onClick={() => setChapterSelector(true)}
-                    className='chapterTitle'
-                ><h3>{chapter.title}</h3></button>
+                {currentChapter != 1 &&
+                    <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter - 1}`)}
+                        style={{ marginRight: "auto" }}
+                        className='nextChapter'
+                    >{"<"}</button>
+                }
+                {currentChapter == 1 &&
+                    <div
+                        style={{ marginRight: "auto" }}
+                        className='noNextChapter'
+                    >{"<"}</div>
+                }
+                <div style={{ position: "relative" }}>
+                    <h3>{chapter.title}</h3>
+                </div>
 
                 {!lastChapter &&
                     <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter + 1}`)}

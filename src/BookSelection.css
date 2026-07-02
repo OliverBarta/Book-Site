@@ -83,7 +83,7 @@
     box-shadow: none;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 4050px) {
     .bookSquare {
         width: 150px;
         height: 210px;
@@ -98,5 +98,8 @@
         display: grid;
         
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    .favouriteButton {
+        translate: 350% 20%;
     }
 }
