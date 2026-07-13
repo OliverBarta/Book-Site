@@ -3,6 +3,7 @@
     flex-direction: column;
     width: calc(100% - 30px);
     margin: auto;
+    margin-bottom: 100px;
     background: var(--box-bg);
     border: var(--box-border);
     border-radius: 15px;
@@ -48,4 +49,59 @@
 
 .commentDate {
     margin-left: auto;
+    padding: 5px;
+}
+
+.commentButton {
+    margin-left: auto;
+    padding: 5px;
+}
+
+.addCommentInput {
+    text-align: left;
+    padding: 10px 15px;
+    margin: 0px 15px;
+}
+
+.loginToLeaveCommentRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.loginToLeaveComment {
+    padding: 0px 5px;
+    margin-left: 15px;
+    position: absolute;
+}
+
+.commentEditButton {
+    padding: 5px;
+}
+
+.commentDeleteButton {
+    padding: 5px;
+}
+
+.commentDeleteButton:hover {
+    box-shadow: 0px 0px 12px 0px var(--red);
+}
+
+.commentEditActions {
+    display: flex;
+    align-self: center;
+    gap: 10px;
+}
+
+.saveEditButton {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.cancelEditButton {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.cancelEditButton:hover {
+    box-shadow: 0px 0px 12px 0px var(--red);
 }

@@ -5,9 +5,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { useFavouriteSection } from './hooks/useFavouriteSection.jsx';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from './hooks/useAuth.jsx';
+import { supabase } from './supabaseClient';
 
 function TopBar() {
+
+    const { session } = useAuth();
 
     const navigate = useNavigate();
 
@@ -54,6 +57,14 @@ function TopBar() {
         localStorage.setItem('favouriteSection', favouriteSection);
     }, [favouriteSection]);
 
+    const handleAuthButtonClick = async () => {
+        if (session) {
+            await supabase.auth.signOut();
+        } else {
+            navigate("/Login");
+        }
+    };
+
     return (
         <>
             <div className='topBar'>
@@ -99,8 +110,17 @@ function TopBar() {
 
             {settingsOpen && (
                 <div className='settingsMenu' ref={settingsRef}>
+                    {session && (
+                        <div className='sliderRow'>
+                            <span className='DropdownLabel'>
+                                Logged in: {session.user.user_metadata?.username || session.user.email}
+                            </span>
+                        </div>
+                    )}
                     <div className='sliderRow'>
-                        <button onClick={() => navigate("/Login")} className='login'>Login</button>
+                        <button onClick={handleAuthButtonClick} className='login'>
+                            {session ? 'Log out' : 'Login'}
+                        </button>
                     </div>
                     <div className='sliderRow'>
                         <span className='DropdownLabel'>Dark mode:</span>
