@@ -124,3 +124,10 @@
 .themeSwitch.active .themeSwitchThumb {
     transform: translateX(18px);
 }
+
+.login {
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0px;
+}

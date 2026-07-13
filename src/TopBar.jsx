@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { useFavouriteSection } from './hooks/useFavouriteSection.jsx';
+import { useNavigate } from 'react-router-dom';
 
 
 function TopBar() {
+
+    const navigate = useNavigate();
 
     const [settingsOpen, setSettingsOpen] = useState(false);
     const settingsRef = useRef(null);
@@ -96,6 +99,9 @@ function TopBar() {
 
             {settingsOpen && (
                 <div className='settingsMenu' ref={settingsRef}>
+                    <div className='sliderRow'>
+                        <button onClick={() => navigate("/Login")} className='login'>Login</button>
+                    </div>
                     <div className='sliderRow'>
                         <span className='DropdownLabel'>Dark mode:</span>
                         <button

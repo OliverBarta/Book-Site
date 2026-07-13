@@ -1,0 +1,32 @@
+
+.loginBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--box-bg);
+    border: var(--box-border);
+    border-radius: 15px;
+
+    gap: 10px;
+    padding: 15px;
+}
+
+.loginInput {
+    padding: 10px;
+    text-align: left;
+}
+
+.loginInputHeader {
+    color: var(--text-h);
+    text-align: left;
+}
+
+.loginButton {
+    padding: 10px;
+}
