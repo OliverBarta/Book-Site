@@ -22,6 +22,25 @@ async function getSupaBaseChapter(bookId, session) {
     return data?.chapter || 0;
 }
 
+// updates the supabase progress for the current user chapter and book
+async function updateSupaBaseProgress(bookId, currentChapter, session) {
+    console.log("Updated progress to:", currentChapter);
+
+    const { error: upsertError } = await supabase
+        .from('progress')
+        .upsert({
+            user_id: session.user.id,
+            book_id: bookId,
+            chapter: currentChapter,
+            updated_at: new Date().toISOString(),
+        }, {
+            onConflict: 'user_id, book_id'
+        });
+    if (upsertError) {
+        console.error("Error updating book progress: ", upsertError.message);
+    }
+}
+
 function BookLanding() {
 
     const navigate = useNavigate();
@@ -82,6 +101,8 @@ function BookLanding() {
                 savedChapter = Math.max(savedChapter, await getSupaBaseChapter(bookId, session));
 
                 localStorage.setItem(`book_${bookId}_last_chapter`, savedChapter);
+
+                await updateSupaBaseProgress(bookId, savedChapter, session);
             }
 
             if (savedChapter) {
