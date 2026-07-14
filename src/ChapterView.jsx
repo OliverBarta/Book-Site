@@ -76,7 +76,26 @@ async function prefetchChapters(bookId, currentChapter, totalChapters) {
     }
 }
 
-function ChapterView({ title, bookId, chapterNum }) {
+// updates the supabase progress for the current user chapter and book
+async function updateSupaBaseProgress(bookId, currentChapter, session) {
+    console.log("Updated progress to:", currentChapter);
+
+    const { error: upsertError } = await supabase
+        .from('progress')
+        .upsert({
+            user_id: session.user.id,
+            book_id: bookId,
+            chapter: currentChapter,
+            updated_at: new Date().toISOString(),
+        }, {
+            onConflict: 'user_id, book_id'
+        });
+    if (upsertError) {
+        console.error("Error updating book progress: ", upsertError.message);
+    }
+}
+
+function ChapterView({ title, bookId, chapterNum, session }) {
     const navigate = useNavigate();
     const currentChapter = Number(chapterNum);
 
@@ -137,6 +156,7 @@ function ChapterView({ title, bookId, chapterNum }) {
     useEffect(() => {
         if (bookId && currentChapter) {
             localStorage.setItem(`book_${bookId}_last_chapter`, currentChapter);
+            if (session) updateSupaBaseProgress(bookId, currentChapter, session);
         }
     }, [bookId, currentChapter]);
 

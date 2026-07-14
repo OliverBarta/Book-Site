@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from './supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useFavouriteSection } from './hooks/useFavouriteSection.jsx';
+import { useAuth } from './hooks/useAuth.jsx';
 
 import './BookSelection.css'
 
@@ -14,9 +15,9 @@ function BookSelection() {
     const [searchTerm, setSearchTerm] = useState('');
 
     const { favouriteSection } = useFavouriteSection();
+    const [ favouriteList, setFavouriteList ] = useState([]);
 
-    const [favouriteList, setFavouriteList] = useState([]);
-
+    const { session } = useAuth();
 
     const navigate = useNavigate();
 
@@ -40,13 +41,67 @@ function BookSelection() {
         }
         
         getBooks();
-
     }, []);
 
+    // updates the supabase favourites for the current user
+    async function updateSupaBaseFavourites(updatedFavourites) {
+        const { error: upsertError } = await supabase
+            .from('favourites')
+            .upsert({
+                user_id: session.user.id,
+                book_ids: updatedFavourites,
+                updated_at: new Date().toISOString(),
+            });
+        if (upsertError) {
+            console.error("Error updating favourites: ", upsertError.message);
+        }
+    }
+    
     useEffect(() => {
         const storedFavourites = localStorage.getItem('favouriteList');
-        setFavouriteList(storedFavourites ? JSON.parse(storedFavourites) : []);
-    }, []);
+        const localFavourites = storedFavourites ? JSON.parse(storedFavourites) : [];
+
+        if (!session) {
+            setFavouriteList(localFavourites);
+            return;
+        }
+
+        // adds all favourites from database and local storage
+        async function mergeFavourites() {
+            setLoading(true);
+
+            const { data, error } = await supabase
+                .from('favourites')
+                .select('book_ids')
+                .eq('user_id', session.user.id)
+                .maybeSingle();
+
+            if (error) {
+                console.error("Error fetching favourites: ", error.message);
+                setLoading(false);
+                return;
+            }
+
+            const dbFavourites = data?.book_ids || [];
+
+
+            const merged = Array.from(
+                new Set([...localFavourites, ...dbFavourites, ...favouriteList])
+            );
+
+            setFavouriteList(merged);
+            localStorage.setItem('favouriteList', JSON.stringify(merged));
+
+            await updateSupaBaseFavourites(merged);
+
+            setLoading(false);
+        }
+
+        mergeFavourites();
+
+    }, [session]);
+
+    
 
     // function to add or remove a book from favourites, and update localStorage accordingly
     const addBookToFavourites = (bookId) => {
@@ -54,10 +109,13 @@ function BookSelection() {
             const updatedFavourites = [...favouriteList, bookId];
             setFavouriteList(updatedFavourites);
             localStorage.setItem('favouriteList', JSON.stringify(updatedFavourites));
+            if (session) updateSupaBaseFavourites(updatedFavourites);
+            
         } else {
             const updatedFavourites = favouriteList.filter(id => id !== bookId);
             setFavouriteList(updatedFavourites);
             localStorage.setItem('favouriteList', JSON.stringify(updatedFavourites));
+            if (session) updateSupaBaseFavourites(updatedFavourites);
         }
     };
 

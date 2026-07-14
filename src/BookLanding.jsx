@@ -3,11 +3,29 @@ import "./BookLanding.css"
 import { useParams } from 'react-router-dom';
 import { supabase } from './supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './hooks/useAuth.jsx';
 
+// gets the supabase progress chapter
+async function getSupaBaseChapter(bookId, session) {
+    const { data, error } = await supabase
+        .from('progress')
+        .select('chapter')
+        .eq('user_id', session.user.id)
+        .eq('book_id', bookId)
+        .maybeSingle();
+
+    if (error) {
+        console.log("Error getting supabse chapter", error.message);
+        return 0;
+    }
+
+    return data?.chapter || 0;
+}
 
 function BookLanding() {
 
     const navigate = useNavigate();
+    const { session } = useAuth();
 
     const [loading, setLoading] = useState(true);
     const [totalChapters, setTotalChapters] = useState(0);
@@ -58,17 +76,19 @@ function BookLanding() {
                 console.warn("No book found with ID:", bookId);
             }
 
-            const savedChapter = localStorage.getItem(`book_${bookId}_last_chapter`);
+            let savedChapter = parseInt(localStorage.getItem(`book_${bookId}_last_chapter`), 10) || 0;
+
+            if (session) {
+                savedChapter = Math.max(savedChapter, await getSupaBaseChapter(bookId, session));
+            }
 
             if (savedChapter) {
-                setContinueChapter(parseInt(savedChapter, 10));
+                setContinueChapter(savedChapter);
             } else {
                 setContinueChapter(1);
-                
             }
 
             setLoading(false);
-            
         }
 
         getBookDetails();

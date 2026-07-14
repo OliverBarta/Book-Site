@@ -35,6 +35,14 @@
     border-bottom: var(--box-border);
 }
 
+
+.commentBar {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: var(--box-border);
+}
+
 .commentDetails {
     display: flex;
     flex-direction: row;

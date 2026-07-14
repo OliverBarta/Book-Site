@@ -3,6 +3,7 @@ import { supabase } from './supabaseClient';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// the comment section code
 function CommentSection({ bookId, chapterNum, session }) {
 
     const navigate = useNavigate();
@@ -27,7 +28,6 @@ function CommentSection({ bookId, chapterNum, session }) {
         if (!error) setComments(data);
         setLoading(false);
     }
-
 
     useEffect(() => {
         fetchComments();
@@ -138,7 +138,7 @@ function CommentSection({ bookId, chapterNum, session }) {
                         />
                         </div>
                     ) : (
-                        <div className='comment'>
+                        <div className='commentBar'>
                             <div className='loginToLeaveCommentRow'>
                                 <button onClick={() => navigate("/Login")} className='loginToLeaveComment'>Login</button>
                                 <p style={{paddingBottom: "10px", paddingLeft: "78px"}}>to leave a comment.</p>
