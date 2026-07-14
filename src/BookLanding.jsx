@@ -80,6 +80,8 @@ function BookLanding() {
 
             if (session) {
                 savedChapter = Math.max(savedChapter, await getSupaBaseChapter(bookId, session));
+
+                localStorage.setItem(`book_${bookId}_last_chapter`, savedChapter);
             }
 
             if (savedChapter) {
