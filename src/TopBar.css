@@ -70,7 +70,7 @@
     width: 220px;
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 15px;
     box-shadow: var(--shadow);
 
     padding: 14px 16px;
@@ -79,7 +79,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
 }
 
 .sliderRow {
@@ -88,8 +87,6 @@
     justify-content: space-between;
     gap: 10px;
 }
-
-
 
 .themeSwitch {
     all: unset;
@@ -131,3 +128,92 @@
     text-align: center;
     padding: 5px 0px;
 }
+
+.userInfo {
+    padding: 10px;
+    border-radius: 15px;
+    background: var(--box-bg);
+    border: var(--box-border);
+    align-self: center;
+    width: 100%;
+}
+
+.fakeButton {
+    border: 1px solid var(--accent);
+    background: var(--bg);
+    border-radius: 15px;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    width: 186px;
+    transition: background 1s ease,ox-shadow 1s ease, width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fakeButton.active {
+    background: var(--input-bg);
+    width: 152px;
+}
+
+.fakeButton:hover {
+    box-shadow: 0px 0px 12px 0px var(--accent);
+}
+
+.usernameInputRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.userNameInput {
+    all: unset;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    padding: 5px 0px;
+}
+
+.userNameInput:hover {
+    box-shadow: none;
+}
+
+.editUsername {
+    all: unset;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    padding: 5px 0px;
+}
+
+.editUsername:hover {
+    box-shadow: none;
+}
+
+.editUsernameDoneButton {
+    text-align: center;
+
+    height: 30px;
+    width: 30px;
+
+    left: 176px;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(20px);
+
+    transition: opacity 0.35s ease,
+                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.editUsernameDoneButton.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.editUsernameDoneButton:hover {
+    box-shadow: 0px 0px 12px 0px var(--green);
+}
+
+.loggedInText {
+    color: var(--text-h);
+}
+

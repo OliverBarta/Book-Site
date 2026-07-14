@@ -122,13 +122,6 @@ function CommentSection({ bookId, chapterNum, session }) {
                             <div className='commentUsername'>
                                 {session.user.user_metadata?.username || 'Anonymous'}
                             </div>
-                            <button
-                                className='commentButton'
-                                onClick={handlePostComment}
-                                disabled={posting}
-                            >
-                                {posting ? 'Posting...' : 'Comment'}
-                            </button>
                         </div>
                         <input
                             className='addCommentInput'
@@ -136,6 +129,13 @@ function CommentSection({ bookId, chapterNum, session }) {
                             onChange={(e) => setNewComment(e.target.value)}
                             placeholder="Add a comment..."
                         />
+                        <button
+                                className='commentButton'
+                                onClick={handlePostComment}
+                                disabled={posting}
+                            >
+                                {posting ? 'Posting...' : 'Comment'}
+                        </button>
                         </div>
                     ) : (
                         <div className='commentBar'>

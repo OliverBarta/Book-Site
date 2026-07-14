@@ -21,6 +21,9 @@ function TopBar() {
 
     const { favouriteSection, setFavouriteSection } = useFavouriteSection();
 
+    const [editingUsername, setEditingUsername] = useState(false);
+    const [usernameInput, setUsernameInput] = useState('');
+
     useEffect(() => {
         function handleClickOutside(event) {
             if (
@@ -62,6 +65,25 @@ function TopBar() {
             await supabase.auth.signOut();
         } else {
             navigate("/Login");
+        }
+    };
+
+    const startEditingUsername = () => {
+        setUsernameInput(session?.user?.user_metadata?.username || '');
+        setEditingUsername(true);
+    };
+
+    const handleUsernameDone = async () => {
+        if (!usernameInput.trim()) return;
+
+        const { error } = await supabase.auth.updateUser({
+            data: { username: usernameInput.trim() }
+        });
+
+        if (!error) {
+            setEditingUsername(false);
+        } else {
+            console.error("Error updating username: ", error.message);
         }
     };
 
@@ -113,10 +135,49 @@ function TopBar() {
                     {session && (
                         <div className='sliderRow'>
                             <span className='DropdownLabel'>
-                                Logged in: {session.user.user_metadata?.username || session.user.email}
+                                <div className='userInfo'>
+                                    <div className='loggedInText'>Logged in:</div>
+                                    <div>
+                                        {session.user.email}
+                                        
+                                    </div>
+                                    <div>
+                                        {session.user.user_metadata?.username || "Anonymous"}
+                                    </div>
+                                </div>
                             </span>
                         </div>
                     )}
+
+                    {session && (
+                        <div className='usernameInputRow'>
+                            <div className={`fakeButton${editingUsername ? ' active' : ''}`}>
+                                {editingUsername ? 
+                                        <input className='userNameInput'
+                                        placeholder='Enter Username'
+                                        value={usernameInput}
+                                        onChange={(e) => setUsernameInput(e.target.value)}
+                                    ></input>
+                                     :
+                                    <button className='editUsername'
+                                        onClick={startEditingUsername}
+                                    >
+                                        Edit username
+                                    </button>
+                                }
+                                
+                            </div>
+
+                            {editingUsername && <button className={`editUsernameDoneButton${editingUsername ? ' active' : ''}`}
+                                onClick={handleUsernameDone}
+                                disabled={!editingUsername}
+                                tabIndex={editingUsername ? 0 : -1}
+                            >
+                                ✓
+                            </button>}
+                        </div>
+                    )}
+
                     <div className='sliderRow'>
                         <button onClick={handleAuthButtonClick} className='login'>
                             {session ? 'Log out' : 'Login'}
