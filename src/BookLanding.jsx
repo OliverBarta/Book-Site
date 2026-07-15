@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { supabase } from './supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth.jsx';
+import CommentSection from './ComentSection.jsx';
 
 // gets the supabase progress chapter
 async function getSupaBaseChapter(bookId, session) {
@@ -156,6 +157,8 @@ function BookLanding() {
                     onClick={() => navigate(`/book/${title}/${bookId}/chapter/${totalChapters}`)}
                 >Read from chapter: {totalChapters}</button>
             </div>
+            <div style={{height: "50px"}}></div>
+            <CommentSection bookId={bookId} chapterNum={-1} session={session} />
         </>
     )
 }

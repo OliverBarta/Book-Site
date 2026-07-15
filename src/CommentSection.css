@@ -1,3 +1,5 @@
+
+
 .commentSectionBox {
     display: flex;
     flex-direction: column;
@@ -63,9 +65,11 @@
 
 .commentButton {
     width: fit-content;
-    align-self: center;
-    margin-top: 10px;
     padding: 5px;
+}
+
+.commentButton:hover {
+    box-shadow: 0px 0px 12px 0px var(--grey);
 }
 
 .addCommentInput {
@@ -86,10 +90,16 @@
 }
 
 .commentEditButton {
+    width: fit-content;
     padding: 5px;
 }
 
+.commentEditButton:hover {
+    box-shadow: 0px 0px 12px 0px var(--grey);
+}
+
 .commentDeleteButton {
+    width: fit-content;
     padding: 5px;
 }
 
@@ -97,14 +107,14 @@
     box-shadow: 0px 0px 12px 0px var(--red);
 }
 
-.commentEditActions {
+.commentActions {
     display: flex;
-    align-self: center;
+    padding: 0px 15px;
+    margin-top: 10px;
     gap: 10px;
 }
 
 .saveEditButton {
-    margin-top: 10px;
     padding: 5px;
 }
 
@@ -113,10 +123,34 @@
 }
 
 .cancelEditButton {
-    margin-top: 10px;
     padding: 5px;
 }
 
 .cancelEditButton:hover {
     box-shadow: 0px 0px 12px 0px var(--red);
+}
+
+.greyButton {
+    border-radius: 12px;
+    background: var(--bg);
+    border: var(--box-border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 45px;
+    width: fit-content;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.greenHover:hover {
+    box-shadow: 0px 0px 12px 0px var(--green);
+}
+
+.redHover:hover {
+    box-shadow: 0px 0px 12px 0px var(--red);
+}
+
+.cantPress:hover {
+    box-shadow: none;
 }

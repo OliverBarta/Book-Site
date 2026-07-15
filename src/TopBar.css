@@ -135,7 +135,7 @@
     background: var(--box-bg);
     border: var(--box-border);
     align-self: center;
-    width: 100%;
+    width: 164px;
 }
 
 .fakeButton {
