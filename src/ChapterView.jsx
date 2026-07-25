@@ -160,10 +160,44 @@ function ChapterView({ title, bookId, chapterNum, session }) {
         }
     }, [bookId, currentChapter]);
 
-    if (loading) return <h3>Loading chapter text...</h3>;
-    if (!chapter) return <h3>Chapter not found.</h3>;
-
     const lastChapter = currentChapter >= totalChapters;
+
+    if (loading) return <h3>Loading chapter text...</h3>;
+
+    // this code runs if no chapter is found.
+    if (!chapter) return (
+        <div>
+            <div className='chapterSelectRow'>
+                {currentChapter != 1 &&
+                    <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter - 1}`)}
+                        style={{ marginRight: "auto" }}
+                        className='nextChapter'
+                    >{"<"}</button>
+                }
+                {currentChapter == 1 &&
+                    <div
+                        style={{ marginRight: "auto" }}
+                        className='noNextChapter'
+                    >{"<"}</div>
+                }
+                <div style={{ position: "relative" }}>
+                    <h3>Chapter not found.</h3>
+                </div>
+                {!lastChapter &&
+                    <button onClick={() => navigate(`/book/${title}/${bookId}/chapter/${currentChapter + 1}`)}
+                        style={{ marginLeft: "auto" }}
+                        className='nextChapter'
+                    >{">"}</button>
+                }
+                {lastChapter &&
+                    <div
+                        style={{ marginLeft: "auto" }}
+                        className='noNextChapter'
+                    >{">"}</div>
+                }
+            </div>
+        </div>
+    )
 
     return (
         <div>
