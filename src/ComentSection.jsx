@@ -191,7 +191,7 @@ function CommentSection({ bookId, chapterNum, session }) {
                     {loading && <p style={{paddingBottom: "20px"}}>Loading comments...</p>}
 
                     {!loading && comments.length === 0 && (
-                    <p style={{paddingBottom: "20px"}}>No comments yet — be the first!</p>
+                    <p style={{paddingBottom: "20px"}}>No comments</p>
                     )}
 
                     {comments.map((comment) => {
