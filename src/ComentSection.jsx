@@ -159,7 +159,7 @@ function CommentSection({ bookId, chapterNum, session }) {
                 <div className='commentSection'>
                     {session ? (
                         <div className='commentBar'>
-                            <div className='commentDetails'>
+                            <div style={{paddingBottom: "15px"}} className='commentDetails'>
                                 <div className='commentUsername'>
                                     {session.user.user_metadata?.username || 'Anonymous'}
                                 </div>

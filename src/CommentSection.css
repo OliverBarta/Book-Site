@@ -51,6 +51,7 @@
     flex-direction: row;
     gap: 10px;
     padding: 0px 20px;
+    padding-bottom: 10px;
     margin-bottom: 5px;
 }
 
@@ -60,7 +61,7 @@
 
 .commentDate {
     margin-left: auto;
-    padding: 5px;
+    padding: 0px 5px;
 }
 
 .commentButton {
@@ -110,6 +111,7 @@
 .commentActions {
     display: flex;
     padding: 0px 15px;
+    padding-top: 15px;
     margin-top: 10px;
     gap: 10px;
 }
