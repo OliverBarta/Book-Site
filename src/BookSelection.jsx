@@ -124,7 +124,19 @@ function BookSelection() {
         setBooks(allBooks.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase())));
     }, [searchTerm]);
 
-    if (loading) return <p>Loading books...</p>;
+    // loading screen with cool spiny loading thing from uiverse
+    if (loading) return (
+        <>
+            
+            <div className='centered'>
+                <svg className='svgLoading' viewBox="25 25 50 50">
+                    <circle className='circleLoading' r="20" cy="50" cx="50"></circle>
+                </svg>
+                <h3 className='btn-shine'>Loading books...</h3>
+            </div>
+        </>
+    );
+
     if (!books) return <p>No books found</p>;
 
 

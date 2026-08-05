@@ -199,3 +199,14 @@ input {
 input:hover {
   box-shadow: 0px 0px 12px 0px var(--accent);
 }
+
+/* centers the loading circle and text */
+.centered {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  align-items: center;
+}

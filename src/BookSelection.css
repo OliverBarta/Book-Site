@@ -103,3 +103,74 @@
         translate: 350% 20%;
     }
 }
+
+.rectTTT {
+    position: fixed;
+    width: 50%;
+    height: 100%;
+    background: green;
+}
+
+/* Imported from uiverse below */
+
+/* From Uiverse.io by barisdogansutcu */ 
+.svgLoading {
+    width: 3.25em;
+    transform-origin: center;
+    animation: rotate4 2s linear infinite;
+}
+   
+.circleLoading {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+100% {
+    transform: rotate(360deg);
+}
+}
+
+@keyframes dash4 {
+0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+}
+
+50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+}
+
+100% {
+    stroke-dashoffset: -125px;
+}
+}
+
+/* The loading text that has the  */
+/* From Uiverse.io by neerajbaniwal */ 
+.btn-shine {
+    color: var(--accent);
+    background: linear-gradient(to right, var(--text-h) 45%, var(--accent) 50%, var(--text-h) 55%);
+    background-size: 200% auto;
+    background-position: 200% center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s infinite linear;
+    animation-fill-mode: forwards;
+    -webkit-text-size-adjust: none;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 100% center;
+    }
+    100% {
+        background-position: 0% center;
+    }
+}

@@ -126,7 +126,16 @@ function BookLanding() {
         }
     };
 
-    if (loading) return <h3>Loading book details...</h3>;
+    if (loading) return (
+        <>
+            <div className='centered'>
+                <svg className='svgLoading' viewBox="25 25 50 50">
+                    <circle className='circleLoading' r="20" cy="50" cx="50"></circle>
+                </svg>
+                <h3 className='btn-shine'>Loading book details...</h3>
+            </div>
+        </>
+    );
 
     return (
         <>

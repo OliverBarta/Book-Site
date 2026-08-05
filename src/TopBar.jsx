@@ -139,7 +139,6 @@ function TopBar() {
                                     <div className='loggedInText'>Logged in:</div>
                                     <div>
                                         {session.user.email}
-                                        
                                     </div>
                                     <div>
                                         {session.user.user_metadata?.username || "Anonymous"}

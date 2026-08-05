@@ -188,7 +188,8 @@ function CommentSection({ bookId, chapterNum, session }) {
                             </div>
                         </div>
                     )}
-                    {loading && <p style={{paddingBottom: "20px"}}>Loading comments...</p>}
+                    
+                    {loading && <p className='btn-shine' style={{paddingBottom: "20px"}}>Loading comments...</p>}
 
                     {!loading && comments.length === 0 && (
                     <p style={{paddingBottom: "20px"}}>No comments</p>

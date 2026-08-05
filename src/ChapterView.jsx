@@ -162,7 +162,14 @@ function ChapterView({ title, bookId, chapterNum, session }) {
 
     const lastChapter = currentChapter >= totalChapters;
 
-    if (loading) return <h3>Loading chapter text...</h3>;
+    if (loading) return (
+            <>
+                <svg className='svgLoading' viewBox="25 25 50 50">
+                    <circle className='circleLoading' r="20" cy="50" cx="50"></circle>
+                </svg>
+                <h3 className='btn-shine'>Loading chapter {currentChapter}...</h3>
+            </>
+        );
 
     // this code runs if no chapter is found.
     if (!chapter) return (
