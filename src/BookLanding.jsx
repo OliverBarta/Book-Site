@@ -5,6 +5,7 @@ import { supabase } from './supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './hooks/useAuth.jsx';
 import CommentSection from './ComentSection.jsx';
+import ProgressLeaderboard from './ProgressLeaderboard.jsx';
 
 // gets the supabase progress chapter
 async function getSupaBaseChapter(bookId, session) {
@@ -126,6 +127,7 @@ function BookLanding() {
         }
     };
 
+    // loading screen while the book details are being fetched, has cool spinny thing and text highlight thing
     if (loading) return (
         <>
             <div className='centered'>
@@ -167,6 +169,7 @@ function BookLanding() {
                 >Read from chapter: {totalChapters}</button>
             </div>
             <div style={{height: "50px"}}></div>
+            <ProgressLeaderboard bookId={bookId}/>
             <CommentSection bookId={bookId} chapterNum={-1} session={session} />
         </>
     )
